@@ -1,0 +1,3 @@
+{"id": 1, "titulo": "Harry Potter", "autor": "J.K. Rowling", "editora": "Rocco", "unidades": {"Loja Centro": 3, "Loja Norte": 1, "Loja Sul": 0}}
+{"id": 2, "titulo": "Senhor dos Aneis", "autor": "J.R.R. Tolkien", "editora": "Martins Fontes", "unidades": {"Loja Centro": 2, "Loja Norte": 0, "Loja Sul": 4}}
+{"id": 3, "titulo": "Dom Casmurro", "autor": "Machado de Assis", "editora": "Globo", "unidades": {"Loja Centro": 0, "Loja Norte": 2, "Loja Sul": 1}}
