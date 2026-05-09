@@ -65,4 +65,19 @@ def criar_app(
 
         return jsonify(resultado), resultado["status"]
 
+    # ROTA: teste back-end (sem relação com o front-end, serve para monitoramento e saúde do serviço)
+    @app.route("/status", methods=["GET"])
+    def status():
+        return jsonify({
+            "status": "ok",
+            "servico": "Lab-Cliente-Servidor Back-end",
+            "versao": "1.0.0",
+            "endpoints": [
+                "GET  /status",
+                "GET  /livros?q=<termo>",
+                "GET  /livros/<id>",
+                "POST /reservas"
+            ]
+        }), 200
+
     return app
