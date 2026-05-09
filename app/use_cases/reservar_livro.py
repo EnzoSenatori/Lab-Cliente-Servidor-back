@@ -1,10 +1,14 @@
 from __future__ import annotations
 
-from datetime import date
+from datetime import date, datetime
+from zoneinfo import ZoneInfo
 
 from app.domain.entities import Reserva
 from app.domain.repositories import LivroRepository, ReservaRepository
 from app.domain.services.qr_code_service import QRCodeService
+
+
+FUSO_NEGOCIO = ZoneInfo("America/Sao_Paulo")
 
 
 def reservar_livro(
@@ -15,7 +19,7 @@ def reservar_livro(
     unidade: str,
     nome_cliente: str | None = None,
     data_reserva: date | None = None,
-) -> Reserva: # quebrei as linhas dos parâmetros para deixar mais legível
+) -> Reserva:
 
     livro = livro_repository.buscar_por_id(livro_id)
 
@@ -24,6 +28,11 @@ def reservar_livro(
 
     if not livro.tem_estoque(unidade):
         raise ValueError("Unidade sem estoque para reserva.")
+
+    if data_reserva is not None:
+        hoje = datetime.now(FUSO_NEGOCIO).date()
+        if data_reserva < hoje:
+            raise ValueError("A data da reserva não pode ser anterior à data atual.")
 
     novo_id = reserva_repository.proximo_id()
 
