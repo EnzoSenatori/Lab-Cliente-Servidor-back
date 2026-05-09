@@ -50,6 +50,9 @@ class ReservaRepositoryTXT(ReservaRepository):
 
         with open(self.caminho_arquivo, "r", encoding="utf-8") as arquivo:
             for linha in arquivo:
+                linha = linha.strip()
+                if not linha:
+                    continue
                 dados = json.loads(linha.strip())
 
                 data_reserva = None
